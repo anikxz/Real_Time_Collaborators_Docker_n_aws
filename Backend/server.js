@@ -5,6 +5,7 @@ import {YSocketIO} from "y-socket.io/dist/server"
 
 
 const app = express()
+app.use(express.static("public"))
 const httpServer = createServer(app)
 
 
@@ -18,12 +19,12 @@ const io = new Server(httpServer,{
 const ySocketIO = new YSocketIO(io)
 ySocketIO.initialize()
 //Health check route
-app.get("/",(req,res)=>{
-    res.status(200).json({
-        message:"Hello World",
-        success:true
-    })
-})
+// app.get("/",(req,res)=>{
+//     res.status(200).json({
+//         message:"Hello World",
+//         success:true
+//     })
+// })
 
 app.get("/health",(req,res)=>{
     res.status(200).json({
